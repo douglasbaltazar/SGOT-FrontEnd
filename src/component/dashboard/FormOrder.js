@@ -4,7 +4,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -18,7 +17,14 @@ class FormOrder extends React.Component {
         super();
         this.state =  {
             checkedProduct2:false,
-            checkedProduct3:false
+            checkedProduct3:false,
+            product1Name: '',
+            product1Value: '',
+            product2Name: '',
+            product2Value: '',
+            product3Name: '',
+            product3Value: '',
+            totalValue: ''
         }
     }
 

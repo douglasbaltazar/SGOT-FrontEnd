@@ -17,6 +17,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 import FormOrder from './FormOrder'
 import Orders from './Orders';
+import AllOrders from './AllOrders';
 
 const drawerWidth = 240;
 
@@ -150,17 +151,20 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <FormOrder />
               </Paper>
             </Grid>
-            
-            {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
+              </Paper>
+            </Grid> 
+            <br></br>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <AllOrders />
               </Paper>
             </Grid>
           </Grid>

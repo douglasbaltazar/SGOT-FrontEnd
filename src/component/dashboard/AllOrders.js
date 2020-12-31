@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import OrdersService from '../../services/OrdersService';
 import Title from './Title';
 
-class Orders extends React.Component {
+class AllOrders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,15 +22,15 @@ class Orders extends React.Component {
   },
   }));
   componentDidMount() {  
-    OrdersService.getOrdersAbove500().then((response) => {
+    OrdersService.getOrders().then((response) => {
         this.setState({orders: response.data})
     });
   }
   render () {
     return (
       <div>
-      <Title>Pedidos com ValorTotal maior que  500</Title>
-      <Table size="small">
+      <Title>Todos os Pedidos</Title>
+      <Table id="tabela1" size="small">
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
@@ -64,4 +64,4 @@ class Orders extends React.Component {
       )
   }
 }
-export default Orders
+export default AllOrders
