@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import OrderComponent from './component/OrderComponent';
+import Dashboard from './component/dashboard/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <OrderComponent />
+      <Dashboard />
     </div>
   );
 }
