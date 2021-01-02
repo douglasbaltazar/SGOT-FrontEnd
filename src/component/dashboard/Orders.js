@@ -53,8 +53,9 @@ class Orders extends React.Component {
             </TableRow>
           ))}
         </TableBody>
-        <br></br>
+        
       </Table>
+      <br></br>
       <div>
         <Link color="primary" href="#" >
           Gerar CSV
