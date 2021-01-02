@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import OrdersService from '../../services/OrdersService';
+import TableCSVExporter from './utils/TableCSVExporter';
 import Title from './Title';
 
 class Orders extends React.Component {
@@ -26,11 +27,25 @@ class Orders extends React.Component {
         this.setState({orders: response.data})
     });
   }
+  exportToCSV(){
+    const dataTable = document.getElementById("dataTable");
+    const exporter = new TableCSVExporter(dataTable, false);
+    const csvOutput = exporter.convertToCSV();
+    const csvBlob = new Blob([csvOutput], { type: "text/csv" });
+    const blobUrl = URL.createObjectURL(csvBlob);
+    const anchorElement = document.createElement("a");
+    anchorElement.href = blobUrl;
+    anchorElement.download = "relatorioMaiorQue500.csv";
+    anchorElement.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(blobUrl);
+    }, 500);
+}
   render () {
     return (
       <div>
       <Title>Pedidos com ValorTotal maior que  500</Title>
-      <Table size="small">
+      <Table id="dataTable" size="small">
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
@@ -57,9 +72,11 @@ class Orders extends React.Component {
       </Table>
       <br></br>
       <div>
-        <Link color="primary" href="#" >
+      <div align="center">
+        <Link id="btnExportToCsv" onClick={this.exportToCSV} color="primary" href="#" >
           Gerar CSV
         </Link>
+      </div>
       </div>
       </div>
       )

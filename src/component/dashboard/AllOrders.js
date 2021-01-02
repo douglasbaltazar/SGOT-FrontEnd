@@ -35,7 +35,7 @@ class AllOrders extends React.Component {
         const blobUrl = URL.createObjectURL(csvBlob);
         const anchorElement = document.createElement("a");
         anchorElement.href = blobUrl;
-        anchorElement.download = "table-export.csv";
+        anchorElement.download = "relatorioTodasOrders.csv";
         anchorElement.click();
         setTimeout(() => {
           URL.revokeObjectURL(blobUrl);
@@ -72,14 +72,11 @@ class AllOrders extends React.Component {
         
       </Table>
       
-      <div>
+      <div align="center">
         <Link id="btnExportToCsv" onClick={this.exportToCSV} color="primary" href="#" >
           Gerar CSV
         </Link>
       </div>
-      <script>
-        
-      </script>
       </div>
       
       
