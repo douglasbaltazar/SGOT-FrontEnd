@@ -15,10 +15,14 @@ class OrdersService {
         return axios.get(ORDERS_REST_API_GET500);
     }   
     createOrder(state) {
-        console.log(state);
         this.getLastId().then((response) => {
             var obj = new Object();
             obj.idProduct = parseInt(response.data) + 1;
+            obj.sent = state.sent;
+            TransportOrderService.createTransportOrder(obj);
+        }).catch(() => {
+            var obj = new Object();
+            obj.idProduct = 1;
             obj.sent = state.sent;
             TransportOrderService.createTransportOrder(obj);
         });

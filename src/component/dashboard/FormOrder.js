@@ -115,9 +115,6 @@ class FormOrder extends React.Component {
         this.setState({ checkedProduct3: !this.state.checkedProduct3 }); 
         this.calcularValorTotal();  
     }
-    handleCheckSent = () => {
-      this.setState({ sent: !this.state.sent });
-    }
     render() {
     
     const { product1Name, product1Value, product2Name, product2Value, product3Name, product3Value, totalValue} = this.state;
@@ -247,10 +244,6 @@ class FormOrder extends React.Component {
             />
           </Grid>
           <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox checked={this.state.sent} onChange={this.handleCheckSent} id="sentcheckkbox" color="primary" />}
-              label="Pedido já foi enviado"
-            />
           </Grid>
         </Grid>
         <Button

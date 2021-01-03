@@ -8,7 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import OrdersService from '../../services/OrdersService';
 import TableCSVExporter from './utils/TableCSVExporter';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Title from './Title';
+import TransportOrderService from '../../services/TransportOrderService';
 
 class Orders extends React.Component {
   constructor(props) {
@@ -25,6 +28,18 @@ class Orders extends React.Component {
   componentDidMount() {  
     OrdersService.getOrdersAbove500().then((response) => {
         this.setState({orders: response.data})
+    });
+  }
+  handleEnviar = (id) => (e) => {
+    e.preventDefault();
+    var obj = new Object();
+    obj.product_id = id;
+    obj.sent = true;
+    TransportOrderService.handleSent(obj)
+    .then((response) => {
+        alert('Enviado com sucesso');
+    }).catch(() => {
+        alert('Erro no envio');
     });
   }
   exportToCSV(){
@@ -53,7 +68,7 @@ class Orders extends React.Component {
             <TableCell>Produto 2</TableCell>
             <TableCell>Produto 3</TableCell>
             <TableCell align="center">Valor Total</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Enviar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -64,7 +79,7 @@ class Orders extends React.Component {
               <TableCell>{order.product2}</TableCell>
               <TableCell>{order.product3}</TableCell>
               <TableCell align="center">{order.totalValue}</TableCell>
-              <TableCell align="right">Botão</TableCell>
+              <TableCell align="right"><Link id="btnEnviar" onClick={this.handleEnviar(order.id)} color="primary" href="#"> <LocalShippingIcon /></Link> <Link id="btnDeletar" color="secondary" href="#"> <DeleteIcon /></Link></TableCell>
             </TableRow>
           ))}
         </TableBody>
