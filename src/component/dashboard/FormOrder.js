@@ -25,6 +25,7 @@ class FormOrder extends React.Component {
           product3name: '',
           product3value: '0',
           totalValue: '0',
+          sent:false,
         }
     }
     
@@ -41,6 +42,7 @@ class FormOrder extends React.Component {
       obj.valueProduct1 = this.state.product1value;
       obj.valueProduct2 = this.state.product2value;
       obj.valueProduct3 = this.state.product3value;
+      obj.sent = this.state.sent;
       OrdersService.createOrder(obj)
       .then((response) => {
           alert('Cadastrado com sucesso');
@@ -48,11 +50,6 @@ class FormOrder extends React.Component {
       }).catch(() => {
           alert('Erro no cadastro');
       });
-    }
-    handleChangeProduct2(event) {
-        this.setState({
-            recipe : {[event.target.name]: event.target.value}
-        })
     }
 
     calcularValorTotal = () => {
@@ -117,6 +114,9 @@ class FormOrder extends React.Component {
         }
         this.setState({ checkedProduct3: !this.state.checkedProduct3 }); 
         this.calcularValorTotal();  
+    }
+    handleCheckSent = () => {
+      this.setState({ sent: !this.state.sent });
     }
     render() {
     
@@ -248,7 +248,7 @@ class FormOrder extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              control={<Checkbox checked={this.state.sent} onChange={this.handleCheckSent} id="sentcheckkbox" color="primary" />}
               label="Pedido já foi enviado"
             />
           </Grid>

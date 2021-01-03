@@ -24,7 +24,8 @@ class AllOrders extends React.Component {
   }));
   componentDidMount() {  
     OrdersService.getOrders().then((response) => {
-        this.setState({orders: response.data})
+        this.setState({orders: response.data}); 
+        console.log(response.data);
     });
   }
   exportToCSV(){
@@ -65,7 +66,7 @@ class AllOrders extends React.Component {
               <TableCell>{order.product2}</TableCell>
               <TableCell>{order.product3}</TableCell>
               <TableCell align="center">{order.totalValue}</TableCell>
-              <TableCell align="right">Botão</TableCell>
+              <TableCell align="right">{order.sent}</TableCell>
             </TableRow>
           ))}
         </TableBody>
